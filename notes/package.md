@@ -7,7 +7,12 @@
 ##### `fmt`
 
 ```go
-fmt.Println("我最喜欢的数字是 ", rand.Intn(10))
+// fmt.Println
+fmt.Println("随机数是 ", rand.Intn(10))
+// fmt.Println/Sprintf 会自动寻找 String() 方法
+today := time.Now().Weekday()
+fmt.Println(today)	// 会调用today的String()方法，而不是打印出底层的数字
+
 
 fmt.Printf("现在你有了 %g 个问题。\n", math.Sqrt(7))
 fmt.Printf("类型：%T 值：%v\n", MaxInt, MaxInt)
@@ -65,7 +70,10 @@ fmt.Sprint(math.Sqrt(x))	// 将参数转化为字符串并返回这个字符串
 
 ##### `math`
 
+提供基础数学常量和函数
+
 ```go
+math.Sin(x)		// 输入float64参数
 math.Sqrt(7)
 math.Pi
 math.Pow(3,2)	// 9
@@ -75,8 +83,10 @@ math.Pow(3,2)	// 9
 
 ##### `math/rand`
 
+生成伪随机数
+
 ```go
-rand.Intn(10)
+rand.Intn(10)	// [0,10)
 ```
 
 
@@ -87,3 +97,13 @@ rand.Intn(10)
 complx.Sqrt(-5+12i)
 ```
 
+
+
+##### `time`
+
+provides functionality for measuring and displaying time
+
+```go
+time.Now().Weekday()	// time.Weekday类型，周日为0
+time.Saturday	// time.Weekday(6)
+```
