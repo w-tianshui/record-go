@@ -2,15 +2,21 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
-func main() {
-	switch time.Now().Weekday() {
-	case 3, 6, 0:
-		fmt.Println("It's the weekend")
+func whatAmI(i any) {
+	switch t := i.(type) {
+	case bool:
+		fmt.Println("I'm a bool")
+	case int:
+		fmt.Println("I'm an int")
 	default:
-		fmt.Println((int)(time.Now().Weekday()))
-		fmt.Println("It's a weekday")
+		fmt.Printf("Don't know type %T\n", t)
 	}
+}
+func main() {
+
+	whatAmI(true)
+	whatAmI(1)
+	whatAmI("hey")
 }

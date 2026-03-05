@@ -120,11 +120,33 @@ case x == 1:
 default:
     fmt.Println(2)
 }
+// Type Switch
+whatAmI := func(i interface{}) {	// interface{}可以接受任何类型的值（可写为any）
+    switch t := i.(type) {	// type switch语法，提取i的类型
+    case bool:
+        fmt.Println("I'm a bool")
+    case int:
+        fmt.Println("I'm an int")
+    default:
+        fmt.Printf("Don't know type %T\n", t)
+    }
+}
+whatAmI(true)	// bool
+whatAmI(1)		// int
+whatAmI("hey")	// string
+
+// Trype Assertion
+func
 
 ```
 
+
+
+##### 函数
+
 ```go
 // 函数
+// func 函数名 (参数) 返回值类型
 func add(x int, y int) int {
 	return x + y
 }
@@ -144,13 +166,7 @@ func split(sum int) (x, y int) {
 }
 ```
 
-```go
-import "fmt"
-import (
-	"fmt"
-    "math"
-)
-```
+
 
 
 
