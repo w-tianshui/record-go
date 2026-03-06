@@ -120,6 +120,33 @@ case x == 1:
 default:
     fmt.Println(2)
 }
+```
+
+
+
+##### 函数
+
+```go
+`func 函数名 (参数) 返回值类型`
+func add(x int, y int) int {
+	return x + y
+}
+// 省略参数相同类型
+func add(x, y int) int {
+	return x + y
+}
+// 多返回值
+func swap(x, y string) (string, string) {
+	return y, x
+}
+// 预先定义命名返回值 - 无参数的return会返回命名的返回值
+func split(sum int) (x, y int) {
+	x = sum * 4 / 9
+	y = sum - x
+	return
+}
+
+// 匿名函数
 // Type Switch
 whatAmI := func(i interface{}) {	// interface{}可以接受任何类型的值（可写为any）
     switch t := i.(type) {	// type switch语法，提取i的类型
@@ -134,39 +161,23 @@ whatAmI := func(i interface{}) {	// interface{}可以接受任何类型的值（
 whatAmI(true)	// bool
 whatAmI(1)		// int
 whatAmI("hey")	// string
-
-// Trype Assertion
-func
-
 ```
 
 
 
-##### 函数
+##### Comma OK
+
+用来安全地处理可能会失败/值不存在的情况，断言成功ok为true，断言失败ok为false
 
 ```go
-// 函数
-// func 函数名 (参数) 返回值类型
-func add(x int, y int) int {
-	return x + y
-}
-// 省略相同类型
-func add(x, y int) int {
-	return x + y
-}
-// 多返回值
-func swap(x, y string) (string, string) {
-	return y, x
-}
-// 命名返回值 - 无参数的return会返回命名的返回值
-func split(sum int) (x, y int) {
-	x = sum * 4 / 9
-	y = sum - x
-	return
+`value, ok := ...`
+// Type Assertion
+`value, ok := interface变量.(目标类型)`
+if s, ok := i.(string); ok {
+    // i的类型是string
+    // 断言成功，s存储字符串
 }
 ```
-
-
 
 
 
