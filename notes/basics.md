@@ -165,6 +165,39 @@ whatAmI("hey")	// string
 
 
 
+#### 数组
+
+```go
+// 类型为 [5]int
+var a [5]int
+var a2 [2][3]int
+
+// 直接声明并初始化
+b := [5]int{1, 2, 3, 4, 5}
+```
+
+
+
+#### 切片
+
+不同于数组，slice的类型于元素个数无关
+
+```go
+// 创建一个长度为3的string类型的slice（初始值为零值）
+s := make([]string, 3)
+s = append(s, "a")
+```
+
+
+
+
+
+
+
+
+
+#### 0
+
 ##### Comma OK
 
 用来安全地处理可能会失败/值不存在的情况，断言成功ok为true，断言失败ok为false
@@ -181,6 +214,27 @@ if s, ok := i.(string); ok {
 
 
 
-#### 数组
+##### 变长参数
 
-12
+variadic parameters，允许向一个函数传递任意数量的同类型参数。函数内部会把它当作slice处理, `...int` 相当于 `[]int`
+
+- 变长参数一定是最后一个参数
+- 传递切片需要进行解包
+
+```go
+`elems ...Type` // 类型前面加"..."
+func sum(nums ...int) int {
+    fmt.Printf("传入的参数 nums 的类型是: %T\n", nums) // 查看它的真实类型
+    total := 0
+    for _, num := range nums {
+        total += num
+    }
+    return total
+}
+
+numbers := []int{10, 20, 30
+// 解包切片
+total := sum(numbers...) 
+```
+
+- `...any`/`...interface{}` 任意类型的任意数量的同类型参数

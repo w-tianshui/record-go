@@ -1,6 +1,46 @@
-`main`
+##### `builtin`
 
-程序从main包开始运行。
+Built-in Functions
+
+```go
+// return the length of v
+func len(v Type) int
+
+// return the capacity of v
+func cap(v Type) int
+// slice - the maximum length the slice can reach when resliced
+// channel - the channel buffer capacity
+```
+
+| type              | length                                                   |
+| ----------------- | -------------------------------------------------------- |
+| array, slice, map | number of elements in v                                  |
+| pointer to array  | number of elements in *v                                 |
+| string            | number of bytes in v                                     |
+| channel           | number of elements queued (unread) in the channel buffer |
+
+```go
+// allocates and initializes an object of type slice, map or chan (only)
+func make(t Type, size ...IntegerType) Type
+
+// appends elements to the end of a lice
+func append(slice []Type, elems ...Type) []Type
+
+// copy | source -> destination, returns the number of elements copied
+func copy(dst, src []Type) int
+
+// clear maps/slices
+func clear[T ~[]Type | ~map[Type]Type1](t T)
+```
+
+
+
+##### Executable
+
+`package main`
+
+- 这段代码不是给别人调用的，会编译成一个可以直接双击运行的二进制程序
+- 这个包里必须存在一个名为main的函数 (`func main()`)，这是整个程序的启动入口点
 
 
 
@@ -12,6 +52,7 @@ fmt.Println("随机数是 ", rand.Intn(10))
 // fmt.Println/Sprintf 会自动寻找 String() 方法
 today := time.Now().Weekday()
 fmt.Println(today)	// 会调用today的String()方法，而不是打印出底层的数字
+fmt.Println(a)	// 打印数组: [v1 v2 v3 ...]/[[0 1 2] [1 2 3]]
 
 
 fmt.Printf("现在你有了 %g 个问题。\n", math.Sqrt(7))
@@ -22,7 +63,7 @@ fmt.Sprint(math.Sqrt(x))	// 将参数转化为字符串并返回这个字符串
 
 
 
-##### 格式化动词
+###### 格式化动词
 
 通用格式化动词
 
@@ -107,3 +148,19 @@ provides functionality for measuring and displaying time
 time.Now().Weekday()	// time.Weekday类型，周日为0
 time.Saturday	// time.Weekday(6)
 ```
+
+
+
+##### `slices`
+
+defines various functions useful with slices of any type
+
+```go
+
+```
+
+
+
+##### `bytes`
+
+`[]byte`同样适用
