@@ -214,9 +214,91 @@ if s, ok := i.(string); ok {
 
 
 
-##### 变长参数
+#### 语法糖
 
-variadic parameters，允许向一个函数传递任意数量的同类型参数。函数内部会把它当作slice处理, `...int` 相当于 `[]int`
+对功能没有实质性影响，提高代码可读性
+
+###### 1.短变量声明
+
+同时完成声明和初始化，并自动推断类型
+
+```go
+name := "world"	// var name string = "world"
+```
+
+
+
+###### 2.for...range循环
+
+无需关心长度、索引边界来获取索引和值
+
+```go
+// 遍历切片、数组、Map、字符串、通道
+for index, value := range mySlice {
+    fmt.Println(index, value)
+}
+for key, value := range myMap {
+    fmt.Println(key, value)
+}
+// 等价于
+for i:=0; i<len(mySlice); i++ {
+    index := i
+    value := mySlice[i]
+    fmt.Println(index, value)
+}
+```
+
+
+
+###### 3.defer语句
+
+使一个函数调用在包含它的函数执行结束前被执行，是资源清理利器，可以把资源申请和释放的代码写在一起。其他语言中，这通常需要``try...finally`来实现
+
+```go
+file, err := os.Open("test.txt")
+if err != nil {
+    log.Fatal(err)
+}
+defer file.Close() // 无论函数如何退出（正常返回、panic），这个都会被执行
+```
+
+
+
+###### 4.go关键字
+
+启动Goroutine，创建一个goroutine并把它放入调度器中，隐藏了线程创建/复用、栈管理等。
+
+```go
+go myFunction() // 异步执行 myFunction，不阻塞当前线程
+```
+
+
+
+###### 5.类型切换
+
+判断一个接口的多种可能类型时使用
+
+```go
+switch v := i.(type) {
+case string:
+    ...
+case int:
+    ...
+}
+// 等价于
+if v, ok = i.(string); ok {
+    ...
+} else if v, ok = i.(int); ok {
+    ...
+}
+```
+
+
+
+###### 6.变长参数
+
+variadic parameters
+允许向一个函数传递任意数量的同类型参数。函数内部打包成一个切片，`...int` 相当于 `[]int`
 
 - 变长参数一定是最后一个参数
 - 传递切片需要进行解包

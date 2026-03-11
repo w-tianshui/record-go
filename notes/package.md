@@ -29,7 +29,7 @@ func append(slice []Type, elems ...Type) []Type
 // copy | source -> destination, returns the number of elements copied
 func copy(dst, src []Type) int
 
-// clear maps/slices
+// clear maps/slices （全设为零值）
 func clear[T ~[]Type | ~map[Type]Type1](t T)
 ```
 
