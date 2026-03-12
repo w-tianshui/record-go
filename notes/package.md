@@ -156,7 +156,14 @@ time.Saturday	// time.Weekday(6)
 defines various functions useful with slices of any type
 
 ```go
+`func Index`
+func Index[S ~[]E, E comparable](s S, v E) int
+// return the index the first occurrence of v in s
+fmt.println(slices.Index(numbers, 2))
 
+`func Max`
+func Max[S ~[]E, E cmp.Ordered](x S) E
+// return the maximal value
 ```
 
 
