@@ -120,11 +120,84 @@ case x == 1:
 default:
     fmt.Println(2)
 }
+
+// Type Switch
+whatAmI := func(i interface{}) {	// interface{}可以接受任何类型的值（可写为any）
+    switch t := i.(type) {	// type switch语法，提取i的类型
+    case bool:
+        fmt.Println("I'm a bool")
+    case int:
+        fmt.Println("I'm an int")
+    default:
+        fmt.Printf("Don't know type %T\n", t)
+    }
+}
 ```
 
 
 
-##### 函数
+
+
+#### 数组
+
+```go
+// 类型为 [5]int
+var a [5]int
+var a2 [2][3]int
+
+// 直接声明并初始化
+b := [5]int{1, 2, 3, 4, 5}
+```
+
+
+
+#### 切片
+
+不同于数组，slice的类型于元素个数无关
+
+```go
+// 创建一个长度为3的string类型的slice（初始值为零值）
+s := make([]string, 3)
+s = append(s, "a")
+// 截取切片
+s2 := s[1:3]	// [1,3)
+s3 := s[:3]		// [0,3)
+s4 := s[2:]		// [2,3]
+// 定义并初始化
+t := []string{"a", "b", "c"}
+
+// 二维切片，内部长度可不同
+twoD := make([][]int, 3)
+for i := 0; i<3; i++ {
+    innerLen := i+1		// 数组个数为1, 2, 3
+    twoD[i] = make([]int, innerLen)
+    for j := 0; j<inner; j++{
+        twoD [i][j] = i+j
+    }
+}
+// [[0] [1 2] [2 3 4]]
+```
+
+
+
+#### Map
+
+```go
+`make(map[key-type]val-type)`
+m := make(map[string]int)	// name[key] = val
+m["k1"]=7		// 添加键值对
+m["k1"]=13
+fmt.Println(m)	// map[k1:7 k2:13]
+delete(m, "k2")	// 通过key删除键值对
+x := m["k2"]	// 访问不存在的key，返回零值
+_, ok := m["k2"]	// 第二个返回值表示是否存在
+// 声明并初始化
+n := map[string]int{"k1":7, "k2":13}
+```
+
+
+
+#### 函数
 
 ```go
 `func 函数名 (参数) 返回值类型`
@@ -165,38 +238,23 @@ whatAmI("hey")	// string
 
 
 
-#### 数组
-
-```go
-// 类型为 [5]int
-var a [5]int
-var a2 [2][3]int
-
-// 直接声明并初始化
-b := [5]int{1, 2, 3, 4, 5}
-```
-
-
-
-#### 切片
-
-不同于数组，slice的类型于元素个数无关
-
-```go
-// 创建一个长度为3的string类型的slice（初始值为零值）
-s := make([]string, 3)
-s = append(s, "a")
-```
-
-
-
-
-
 
 
 
 
 #### 0
+
+##### 零值
+
+```go
+int, float	// 0
+string		// ""
+bool		// false
+指针 切片 map channel 函数	// mil
+结构体		// 各字段是各自的零值
+```
+
+
 
 ##### Comma OK
 
@@ -210,6 +268,12 @@ if s, ok := i.(string); ok {
     // i的类型是string
     // 断言成功，s存储字符串
 }
+
+// map的key是否存在
+_, ok := m["k2"]	// m - map[string]int
+
+// 通道读取
+v, ok := <-ch
 ```
 
 

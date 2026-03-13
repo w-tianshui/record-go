@@ -156,14 +156,36 @@ time.Saturday	// time.Weekday(6)
 defines various functions useful with slices of any type
 
 ```go
+// 查找
+`func Contains`
+func Contains[S ~[]E, E comparable](s S, v E) bool
+// reports whether v is present in s
+slices.Contains(numbers, 2)
+
 `func Index`
 func Index[S ~[]E, E comparable](s S, v E) int
-// return the index the first occurrence of v in s
-fmt.println(slices.Index(numbers, 2))
+// return the index the first occurrence of v in s / -1
+fmt.Println(slices.Index(numbers, 2))
 
 `func Max`
 func Max[S ~[]E, E cmp.Ordered](x S) E
 // return the maximal value
+
+// 修改
+`func Insert`
+func Insert[S ~[]E, E any](s S, i int, v ...E) S
+`func Delete`
+func Delete[S ~[]E, E any](s S, i, j int) S
+`func Replace`
+func Replace[S ~[]E, E any](s S, i, j int, v ...E) S
+`func Reverse`
+func Reverse[S ~[]E, E any](s S)
+
+// 排序
+`func Sort`
+func Sort[S ~[]E, E cmp.Ordered](x S)
+`func SortFunc`
+func SortFunc[S ~[]E, E any](x S, cmp func(a, b E) int)
 ```
 
 
@@ -171,3 +193,16 @@ func Max[S ~[]E, E cmp.Ordered](x S) E
 ##### `bytes`
 
 `[]byte`同样适用
+
+```go
+`func Split`
+`func Replace`
+`func Trim`
+`func Contains`
+```
+
+
+
+##### 0
+
+- 包中函数名大写——公开的；小写——私有的
