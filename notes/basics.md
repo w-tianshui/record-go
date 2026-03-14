@@ -191,6 +191,7 @@ fmt.Println(m)	// map[k1:7 k2:13]
 delete(m, "k2")	// 通过key删除键值对
 x := m["k2"]	// 访问不存在的key，返回零值
 _, ok := m["k2"]	// 第二个返回值表示是否存在
+
 // 声明并初始化
 n := map[string]int{"k1":7, "k2":13}
 ```
@@ -316,15 +317,27 @@ name := "world"	// var name string = "world"
 for index, value := range mySlice {
     fmt.Println(index, value)
 }
-for key, value := range myMap {
-    fmt.Println(key, value)
-}
 // 等价于
 for i:=0; i<len(mySlice); i++ {
     index := i
     value := mySlice[i]
     fmt.Println(index, value)
 }
+
+// 对map进行遍历
+for key, value := range myMap {
+    fmt.Println(key, value)
+}
+// range可以只遍历map的键
+for key := range myMap {
+    fmt.Println(key)
+}
+
+// 在字符串中迭代unicode码点
+for i, c := range "go" {
+    fmt.Println(i, c)
+}
+// 0 103 /n 1 111
 ```
 
 
