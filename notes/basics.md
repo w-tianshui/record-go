@@ -406,8 +406,8 @@ func sum(nums ...int) int {
     return total
 }
 
-numbers := []int{10, 20, 30
-// 解包切片
+numbers := []int{10, 20, 30}
+// 解包切片，传入后还会再打包成切片
 total := sum(numbers...) 
 ```
 
