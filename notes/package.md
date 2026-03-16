@@ -203,6 +203,6 @@ func SortFunc[S ~[]E, E any](x S, cmp func(a, b E) int)
 
 
 
-##### 0
+##### 规则
 
 - 包中函数名大写——公开的；小写——私有的
