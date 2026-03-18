@@ -132,6 +132,9 @@ whatAmI := func(i interface{}) {	// interface{}可以接受任何类型的值（
         fmt.Printf("Don't know type %T\n", t)
     }
 }
+whatAmI(true)	// bool
+whatAmI(1)		// int
+whatAmI("hey")	// string
 ```
 
 
@@ -220,24 +223,35 @@ func split(sum int) (x, y int) {
 	return
 }
 
-// 匿名函数
-// Type Switch
-whatAmI := func(i interface{}) {	// interface{}可以接受任何类型的值（可写为any）
-    switch t := i.(type) {	// type switch语法，提取i的类型
-    case bool:
-        fmt.Println("I'm a bool")
-    case int:
-        fmt.Println("I'm an int")
-    default:
-        fmt.Printf("Don't know type %T\n", t)
-    }
+// 匿名函数 - 定义的时候不分配名称，只是临时用一下
+add := func(x int, y int) int {
+    return x + y
 }
-whatAmI(true)	// bool
-whatAmI(1)		// int
-whatAmI("hey")	// string
+// 回调函数 - 用来被其他函数调用的函数，通常用匿名函数作为回调
 ```
 
 
+
+#### 闭包
+
+带有环境的函数，是回调的一种特殊形式
+
+```go
+// inSeq函数返回一个匿名函数，返回的函数隐藏变量i以形成闭包，使得i不会在intSeq返回后被销毁
+func intSeq() func() int {
+    i := 0
+    return func() int {
+        i++
+        return i
+    }
+}
+nextInt := intSeq()		// 定义nextInt为一个匿名函数，nextInt在被调用的时候会让i++，并输出
+fmt.Println(nextInt()) 	// i = 1	
+fmt.Println(nextInt()) 	// i = 2
+fmt.Println(nextInt()) 	// i = 3
+
+nextInts := intSeq()	// 定义一个新的闭包，它含有自己的i
+```
 
 
 
