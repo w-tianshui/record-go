@@ -1,6 +1,6 @@
 # record-go
-[![GitHub last commit](https://img.shields.io/github/last-commit/TNO-C137/go-learning-journey)](https://github.com/TNO-C137/go-learning-journey)
-[![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?logo=go)](https://golang.org)
+[![GitHub last commit](https://img.shields.io/github/last-commit/TNO-C137/go-learning-journey)](https://github.com/w-tianshui/record-go)
+[![Go Version](https://img.shields.io/badge/Go-1.25.0-00ADD8?logo=go)](https://golang.org)
 
 ## 📋 项目简介
 Learning Go for backend development
