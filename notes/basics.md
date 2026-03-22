@@ -244,7 +244,7 @@ func intSeq() func() int {
         return i
     }
 }
-nextInt := intSeq()		// 定义nextInt为一个匿名函数，nextInt在被调用的时候会让i++，并输出
+nextInt := intSeq()		// 定义nextInt为一个函数，nextInt在被调用的时候会让i++，并输出
 fmt.Println(nextInt()) 	// i = 1	
 fmt.Println(nextInt()) 	// i = 2
 fmt.Println(nextInt()) 	// i = 3
@@ -253,6 +253,30 @@ nextInts := intSeq()	// 定义一个新的闭包，它含有自己的i
 ```
 
 
+
+#### 递归
+
+```go
+func fact(n int) int {
+    if n == 0 {
+        return 1
+    }
+    return n * fact(n-1)
+}
+
+func main() {
+    // 递归的闭包需提前显示声明
+    var fib func(n int) int
+
+    fib = func(n int) int {
+        if n < 2 {
+            return n
+        }
+        return fib(n-1) + fib(n-2)
+    }
+    fmt.Println(fib(7))
+}
+```
 
 
 
