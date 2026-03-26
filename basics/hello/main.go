@@ -9,6 +9,7 @@ func intSeq() func() int {
 		return i
 	}
 }
+
 func main() {
 	nextInt := intSeq()    // 定义nextInt为一个函数，nextInt在被调用的时候会让自由变量/捕获变量i++，并输出
 	fmt.Println(nextInt()) // i = 1
