@@ -292,7 +292,6 @@ bool		// false
 ```
 
 
-
 ##### Comma OK
 
 用来安全地处理可能会失败/值不存在的情况，断言成功ok为true，断言失败ok为false
@@ -346,7 +345,7 @@ name := "world"	// var name string = "world"
 
 ###### 2.for...range循环
 
-无需关心长度、索引边界来获取索引和值
+无需关心长度、索引边界就可以获取索引和值
 
 ```go
 // 遍历切片、数组、Map、字符串、通道
@@ -446,5 +445,6 @@ numbers := []int{10, 20, 30}
 // 解包切片，传入后还会再打包成切片
 total := sum(numbers...) 
 ```
+
 
 - `...any`/`...interface{}` 任意类型的任意数量的同类型参数
