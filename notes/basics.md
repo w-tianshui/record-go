@@ -342,6 +342,7 @@ name := "world"	// var name string = "world"
 ```
 
 
+
 ###### 2.for...range循环
 
 无需关心长度、索引边界就可以获取索引和值
