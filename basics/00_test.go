@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"testing"
 )
 
 func sum(nums ...int) int {
@@ -12,7 +13,7 @@ func sum(nums ...int) int {
 	}
 	return total
 }
-func main() {
+func Test01(t *testing.T) {
 	fmt.Println(sum(1, 2, 3))
 	a := make([]int, 3)
 	fmt.Printf("%T", a)
